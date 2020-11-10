@@ -7,6 +7,7 @@ public class Analyser {
     public static void main(String[] args) throws IOException {
         LinkedList<Character> chars = new LinkedList<Character>();
         char ch;
+        boolean end = false;
         int[][] priority = new int[][]{
                 // + * i ( ) #
                 {1, -1, -1, -1, 1, 1}, // +
@@ -20,16 +21,20 @@ public class Analyser {
         FileReader reader = new FileReader(args[0]);
         chars.add('#');
         ch = (char)reader.read();
-        if (ch == (char)-1)
+        if (ch == (char)-1) {
             ch = '#';
+            end = true;
+        }
         while (true) {
             char top = chars.getLast();
             if (priority[c2d(top)][c2d(ch)] == -1 || priority[c2d(top)][c2d(ch)] == 0) {
                 chars.add(ch);
                 System.out.println("I" + ch);
                 ch = (char)reader.read();
-                if (ch == (char)-1)
+                if (ch == (char)-1) {
                     ch = '#';
+                    end = true;
+                }
             } else if (priority[c2d(top)][c2d(ch)] == 1) {
                 if (top == 'i') {
                     chars.removeLast();
@@ -53,7 +58,7 @@ public class Analyser {
                 System.out.println("E");
                 break;
             }
-            if (chars.size() == 2 && chars.getLast() == 'N') break;
+            if (end && chars.size() == 2 && chars.getLast() == 'N') break;
         }
     }
 
