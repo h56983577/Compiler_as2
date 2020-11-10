@@ -1,6 +1,10 @@
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 public class Analyser {
 
@@ -9,6 +13,8 @@ public class Analyser {
     public static void main(String[] args) throws IOException {
         char ch;
         boolean end = false;
+        Set<Character> chTable = new HashSet<Character>(
+                Arrays.asList('+', '*', 'i', '(', ')'));
         int[][] priority = new int[][]{
                 // + * i ( ) #
                 {1, -1, -1, -1, 1, 1}, // +
@@ -34,6 +40,11 @@ public class Analyser {
                 if (ch == '\r') {
                     ch = '#';
                     end = true;
+                } else {
+                    if (!chTable.contains(ch)) {
+                        System.out.println("E");
+                        break;
+                    }
                 }
             } else if (priority[c2d(top)][c2d(ch)] == 1) {
                 if (top == 'i') {
