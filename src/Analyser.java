@@ -69,9 +69,8 @@ public class Analyser {
             case 'i': return 2;
             case '(': return 3;
             case ')': return 4;
-            case '#': return 5;
             case 'N': return 6;
-            default: return -1;
+            default: return 5;
         }
     }
 }
