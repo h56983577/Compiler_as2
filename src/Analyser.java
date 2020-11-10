@@ -4,8 +4,9 @@ import java.util.LinkedList;
 
 public class Analyser {
 
+    private static LinkedList<Character> chars = new LinkedList<Character>();
+
     public static void main(String[] args) throws IOException {
-        LinkedList<Character> chars = new LinkedList<Character>();
         char ch;
         boolean end = false;
         int[][] priority = new int[][]{
@@ -16,7 +17,6 @@ public class Analyser {
                 {-1, -1, -1, -1, 0, 2}, // (
                 {1, 1, 2, 2, 1, 1}, // )
                 {-1, -1, -1, -1, 2, 2}, // #
-                {-1, -1, 2, 2, 0, 0}, // N
         };
         FileReader reader = new FileReader(args[0]);
         chars.add('#');
@@ -69,7 +69,11 @@ public class Analyser {
             case 'i': return 2;
             case '(': return 3;
             case ')': return 4;
-            case 'N': return 6;
+            case 'N':
+                chars.removeLast();
+                char c = chars.getLast();
+                chars.add('N');
+                return c2d(c);
             default: return 5;
         }
     }
