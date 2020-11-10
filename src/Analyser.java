@@ -16,12 +16,12 @@ public class Analyser {
                 {-1, -1, -1, -1, 0, 2}, // (
                 {1, 1, 2, 2, 1, 1}, // )
                 {-1, -1, -1, -1, 2, 2}, // #
-                {-1, -1, 2, 2, 1, 0}, // N
+                {-1, -1, 2, 2, 0, 0}, // N
         };
         FileReader reader = new FileReader(args[0]);
         chars.add('#');
         ch = (char)reader.read();
-        if (ch == (char)-1) {
+        if (ch == '\r') {
             ch = '#';
             end = true;
         }
@@ -31,7 +31,7 @@ public class Analyser {
                 chars.add(ch);
                 System.out.println("I" + ch);
                 ch = (char)reader.read();
-                if (ch == (char)-1) {
+                if (ch == '\r') {
                     ch = '#';
                     end = true;
                 }
