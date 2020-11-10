@@ -24,13 +24,13 @@ public class Analyser {
             ch = '#';
         while (true) {
             char top = chars.getLast();
-            if (priority[c2d(top)][ch] == -1 || priority[c2d(top)][ch] == 0) {
+            if (priority[c2d(top)][c2d(ch)] == -1 || priority[c2d(top)][c2d(ch)] == 0) {
                 chars.add(ch);
                 System.out.println("I" + ch);
                 ch = (char)reader.read();
                 if (ch == (char)-1)
                     ch = '#';
-            } else if (priority[c2d(top)][ch] == 1) {
+            } else if (priority[c2d(top)][c2d(ch)] == 1) {
                 if (top == 'i') {
                     chars.removeLast();
                     chars.add('N');
