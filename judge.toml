@@ -1,7 +1,7 @@
-[jobs.pascal_lex]
+[jobs.opg]
 
-image = { source = "dockerfile", path = ".", tag = "pascal-lex-example" }
+image = { source = "dockerfile", path = ".", tag = "opg" }
 
 run = [
-  "java Lex $input",
+  "java Analyser $input",
 ]
